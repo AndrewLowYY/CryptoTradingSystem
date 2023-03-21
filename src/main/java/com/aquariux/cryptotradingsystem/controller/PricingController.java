@@ -26,7 +26,7 @@ public class PricingController {
 	private PricingService pricingService;
 	
 	@GetMapping(value = "/{tradingPair}")
-	public ResponseEntity<Map<String, Object>> getBestPrices(@PathVariable("tradingPair") String tradingPair){
+	public ResponseEntity<Map<String, Object>> getBestPrices(@PathVariable("tradingPair") String tradingPair) {
 		logger.info("Obtaining aggregated prices for trading pair: " + tradingPair);
 		
 		Map<String, Object> result = new HashMap<>();

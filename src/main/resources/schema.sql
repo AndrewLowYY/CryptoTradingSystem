@@ -1,21 +1,25 @@
 CREATE TABLE Users (
-    UserID int auto_increment,
-    FirstName varchar(255) NOT NULL,
-    LastName varchar(255) NOT NULL,
-    UserName varchar(255) NOT NULL,
+    UserID long auto_increment,
+    First_Name varchar(255) NOT NULL,
+    Last_Name varchar(255) NOT NULL,
+    User_Name varchar(255) NOT NULL,
     Lock boolean,
-    LockedDate datetime NULL
+    Locked_Date datetime NULL,
+    PRIMARY KEY (UserID)
 );
 
 CREATE TABLE Pricing (
     PricingID long auto_increment,
-    TradingPair varchar(255) NOT NULL,
-    AskPrice double,
-    BidPrice double
+    Trading_Pair varchar(255) NOT NULL,
+    Ask_Price double,
+    Bid_Price double,
+    PRIMARY KEY (PricingID)
 );
 
 CREATE TABLE Wallet (
+	UserID long NOT NULL,
 	WalletID int auto_increment,
-	Symbol varchar(255) NOT NULL,
-	Amount double NOT NULL
+	Crypto_Currency varchar(255) NOT NULL,
+	Amount double NOT NULL,
+	PRIMARY KEY (WalletID)
 )

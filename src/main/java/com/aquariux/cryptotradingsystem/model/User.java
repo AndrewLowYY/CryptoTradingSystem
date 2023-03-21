@@ -5,6 +5,7 @@ import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,14 +28,18 @@ public class User {
 	private String userName;
 	
 	@Column(name = "Lock")
-	private boolean lock;
+	private Boolean lock;
 	
 	@Column(name = "LockedDate")
 	private Date lockedDate;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
 	private Set<Wallet> wallets;
 
+	public User() {
+		
+	}
+	
 	public User(String firstName, String lastName, String userName) {
 		super();
 		this.firstName = firstName;
@@ -96,4 +101,11 @@ public class User {
 		return wallets;
 	}
 
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", userName="
+				+ userName + ", lock=" + lock + ", lockedDate=" + lockedDate + ", wallets=" + wallets + "]";
+	}
+
+	
 }

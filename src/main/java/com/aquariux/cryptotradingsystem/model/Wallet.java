@@ -1,5 +1,7 @@
 package com.aquariux.cryptotradingsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,10 +20,11 @@ public class Wallet {
 	
 	@ManyToOne
 	@JoinColumn(name = "UserID", nullable=false)
+	@JsonIgnore
 	private User user;
 	
-	@Column(name = "Symbol")
-	private String symbol;
+	@Column(name = "CryptoCurrency")
+	private String cryptoCurrency;
 	
 	@Column(name = "Amount")
 	private double amount;
@@ -30,10 +33,10 @@ public class Wallet {
 		
 	}
 	
-	public Wallet(User user, String symbol, double amount) {
+	public Wallet(User user, String cryptoCurrency, double amount) {
 		super();
 		this.user = user;
-		this.symbol = symbol;
+		this.cryptoCurrency = cryptoCurrency;
 		this.amount = amount;
 	}
 
@@ -53,12 +56,12 @@ public class Wallet {
 		this.user = user;
 	}
 
-	public String getSymbol() {
-		return symbol;
+	public String getCryptoCurrency() {
+		return cryptoCurrency;
 	}
 
-	public void setSymbol(String symbol) {
-		this.symbol = symbol;
+	public void setCryptoCurrency(String cryptoCurrency) {
+		this.cryptoCurrency = cryptoCurrency;
 	}
 
 	public double getAmount() {
@@ -67,6 +70,12 @@ public class Wallet {
 
 	public void setAmount(double amount) {
 		this.amount = amount;
+	}
+
+	@Override
+	public String toString() {
+		return "Wallet [walletId=" + walletId + ", cryptoCurrency=" + cryptoCurrency + ", amount="
+				+ amount + "]";
 	}
 	
 	
