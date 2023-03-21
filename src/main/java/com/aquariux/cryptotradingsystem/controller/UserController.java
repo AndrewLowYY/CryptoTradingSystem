@@ -1,6 +1,7 @@
 package com.aquariux.cryptotradingsystem.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aquariux.cryptotradingsystem.CryptoTradingSystemApplication;
+import com.aquariux.cryptotradingsystem.model.TransactionHistory;
 import com.aquariux.cryptotradingsystem.model.Wallet;
 import com.aquariux.cryptotradingsystem.service.UserService;
 
@@ -52,5 +54,31 @@ public class UserController {
 		return new ResponseEntity<Map<String,Object>>(result, HttpStatus.OK);
 		
 	}
+	
+	@GetMapping(value = "/transactions/{userId}")
+	public ResponseEntity<Map<String, Object>> getUserTransactions(@PathVariable("userId") long userId) {
+		
+		logger.info("Retrieving transaction history for user id: " + userId);
+		
+		Map<String, Object> result = new HashMap<>();
+		
+		List<TransactionHistory> transactionHistory = null;
+		
+		try {
+			transactionHistory = userService.getTransactionHistoryByUserId(userId);
+		} catch (NoSuchElementException e) {
+			logger.error("User with userId: " + userId + " not found.");
+			result.put("status", "failure");
+			result.put("message", "User not found");
+			return new ResponseEntity<Map<String,Object>>(result, HttpStatus.BAD_REQUEST);
+		}
+				
+		result.put("data", transactionHistory);
+		result.put("status", "success");
+		
+		return new ResponseEntity<Map<String,Object>>(result, HttpStatus.OK);
+		
+	}
+	
 	
 }

@@ -41,8 +41,9 @@ public class PricingController {
 		logger.error("Prices for trading pair " + tradingPair + " not found.");
 		
 		result.put("status", "failure");
+		result.put("message", "Invalid trading pair");
 		
-		return new ResponseEntity<Map<String, Object>>(result, HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<Map<String, Object>>(result, HttpStatus.BAD_REQUEST);
 		
 	}
 }

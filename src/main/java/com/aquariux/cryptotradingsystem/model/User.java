@@ -1,6 +1,7 @@
 package com.aquariux.cryptotradingsystem.model;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -10,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 
 @Entity(name = "Users")
 public class User {
@@ -35,6 +37,9 @@ public class User {
 	
 	@OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
 	private Set<Wallet> wallets;
+	
+	@OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+	private List<TransactionHistory> transactionHistory;
 
 	public User() {
 		
@@ -81,13 +86,6 @@ public class User {
 		this.userName = userName;
 	}
 
-	public boolean isLock() {
-		return lock;
-	}
-
-	public void setLock(boolean lock) {
-		this.lock = lock;
-	}
 
 	public Date getLockedDate() {
 		return lockedDate;
@@ -97,6 +95,18 @@ public class User {
 		this.lockedDate = lockedDate;
 	}
 	
+	public Boolean getLock() {
+		return lock;
+	}
+
+	public void setLock(Boolean lock) {
+		this.lock = lock;
+	}
+
+	public List<TransactionHistory> getTransactionHistory() {
+		return transactionHistory;
+	}
+
 	public Set<Wallet> getWallets() {
 		return wallets;
 	}
@@ -104,8 +114,10 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", userName="
-				+ userName + ", lock=" + lock + ", lockedDate=" + lockedDate + ", wallets=" + wallets + "]";
+				+ userName + ", lock=" + lock + ", lockedDate=" + lockedDate + ", wallets=" + wallets
+				+ ", transactionHistory=" + transactionHistory + "]";
 	}
 
+	
 	
 }

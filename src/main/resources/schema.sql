@@ -18,8 +18,19 @@ CREATE TABLE Pricing (
 
 CREATE TABLE Wallet (
 	UserID long NOT NULL,
-	WalletID int auto_increment,
+	WalletID long auto_increment,
 	Crypto_Currency varchar(255) NOT NULL,
 	Amount double NOT NULL,
 	PRIMARY KEY (WalletID)
-)
+);
+
+CREATE TABLE Transaction_History (
+	UserID long NOT NULL,
+	TransactionID long auto_increment,
+	Transaction_Date datetime NOT NULL,
+	Bought_Currency varchar(255) NOT NULL,
+	Sold_Currency varchar(255) NOT NULL,
+	Amount_Bought double NOT NULL,
+	Amount_Sold double NOT NULL,
+	PRIMARY KEY (TransactionID)
+);

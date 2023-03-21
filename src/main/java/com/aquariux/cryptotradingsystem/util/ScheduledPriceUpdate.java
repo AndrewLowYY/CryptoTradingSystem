@@ -32,9 +32,9 @@ public class ScheduledPriceUpdate {
 	private JSONObject huobiEth;
 	private JSONObject huobiBtc;
 	
-	@Scheduled(fixedDelay=10000)
+	@Scheduled(fixedRate = 10000)
 	public void loadPrices() {
-		
+		logger.info("Updating prices");
 		binanceEth = null;
 		binanceBtc = null;
 		huobiEth = null;
@@ -68,7 +68,7 @@ public class ScheduledPriceUpdate {
 			return;
 		}
 		
-		logger.info("Binance connection response: " + responsecode);
+		logger.debug("Binance connection response: " + responsecode);
 		if (responsecode != 200) {
 		    logger.error("Error encountered after Binance API connection");
 		    return;
@@ -128,7 +128,7 @@ public class ScheduledPriceUpdate {
 			return;
 		}
 		
-		logger.info("Huobi connection response: " + responsecode);
+		logger.debug("Huobi connection response: " + responsecode);
 		if (responsecode != 200) {
 			logger.error("Error encountered after Binance API connection");
 		    return;

@@ -11,7 +11,7 @@ public class Pricing {
 	@Id
 	@Column(name = "PricingID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long pricingID;
+	private Long pricingID;
 	
 	@Column(name = "TradingPair")
 	private String tradingPair;
@@ -33,11 +33,11 @@ public class Pricing {
 		this.bidPrice = bidPrice;
 	}
 	
-	public long getPricingID() {
+	public Long getPricingID() {
 		return pricingID;
 	}
 	
-	public void setPricingID(long pricingID) {
+	public void setPricingID(Long pricingID) {
 		this.pricingID = pricingID;
 	}
 
