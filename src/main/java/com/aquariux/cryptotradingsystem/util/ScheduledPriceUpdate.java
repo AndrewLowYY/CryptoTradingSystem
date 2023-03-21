@@ -182,7 +182,7 @@ public class ScheduledPriceUpdate {
 			btcUsdtPricing.setAskPrice(binanceBtc.getDouble("askPrice"));
 			btcUsdtPricing.setBidPrice(binanceBtc.getDouble("bidPrice"));
 		} else {
-			btcUsdtPricing.setAskPrice(Math.max(huobiBtc.getDouble("ask"), binanceBtc.getDouble("askPrice")));
+			btcUsdtPricing.setAskPrice(Math.min(huobiBtc.getDouble("ask"), binanceBtc.getDouble("askPrice")));
 			btcUsdtPricing.setBidPrice(Math.max(huobiBtc.getDouble("bid"), binanceBtc.getDouble("bidPrice")));
 		}
 		
@@ -198,7 +198,7 @@ public class ScheduledPriceUpdate {
 			ethUsdtPricing.setAskPrice(binanceEth.getDouble("askPrice"));
 			ethUsdtPricing.setBidPrice(binanceEth.getDouble("bidPrice"));
 		} else {
-			ethUsdtPricing.setAskPrice(Math.max(huobiEth.getDouble("ask"), binanceEth.getDouble("askPrice")));
+			ethUsdtPricing.setAskPrice(Math.min(huobiEth.getDouble("ask"), binanceEth.getDouble("askPrice")));
 			ethUsdtPricing.setBidPrice(Math.max(huobiEth.getDouble("bid"), binanceEth.getDouble("bidPrice")));
 		}
 		

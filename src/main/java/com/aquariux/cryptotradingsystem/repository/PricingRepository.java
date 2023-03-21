@@ -7,7 +7,5 @@ import com.aquariux.cryptotradingsystem.model.Pricing;
 public interface PricingRepository extends JpaRepository<Pricing, Long>{
 
 	Pricing findByTradingPair(String tradingPair);
-	
-//	Pricing save(Pricing pricing);
-	
+		
 }
